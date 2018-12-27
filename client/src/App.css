@@ -1,4 +1,4 @@
-/* input {
+ input {
   height: 40px;
   width: 50%;
   font-size: 1.5rem;
@@ -60,8 +60,8 @@ li {
     margin-left: 10px;
     margin-top: 0;
   }
-}  */
-.App {
+}
+/* .App {
   text-align: center;
   font-size: calc(10px + 2vmin);
   width: 60%;
@@ -74,7 +74,7 @@ input {
   width: 50%;
 
 
- 
+
   font-size: 1.5rem;
   color: black;
 }
@@ -144,4 +144,4 @@ li {
     margin-left: 10px;
     margin-top: 0;
   }
-}
+} */
