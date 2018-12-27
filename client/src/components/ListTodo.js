@@ -1,5 +1,5 @@
 import React from 'react';
-const ListTodo = ({ todos, deleteTodo }) => {
+const ListTodo = ({todos}) => {
 
  return (
    <ul>

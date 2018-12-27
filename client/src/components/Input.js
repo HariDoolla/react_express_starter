@@ -4,7 +4,8 @@ class Input extends Component {
   state = {
    action: "",
    action1:"",
-   action2:""
+   action2:"",
+   str:[]
  }
  addTodo = () => {
    var task = {notification: this.state.action,notificationcontent:this.state.action1}
@@ -23,11 +24,10 @@ class Input extends Component {
  }
  deleteTodo=()=>{
    var task={_id:this.state.action2}
-   var del={notification:this.state.action}
    console.log(task)
    if(task._id&&task._id.length>0)
    {
-     axios.delete('/notes/_id',del)
+     axios.delete('/notes/'+task._id)
      .then(res=>{
        if(res.data){
          this.props.getTodos();
@@ -36,12 +36,28 @@ class Input extends Component {
      })
    }
 }
- handleChange = (e) => {
-   this.setState({action: e.target.value})}
-   handleChange1 = (e) => {
-     this.setState({action1: e.target.value})}
-     handleChange2 = (e) => {
-       this.setState({action2: e.target.value})}
+
+ getoneTodo=()=>{
+   var task={_id:this.state.action2}
+   if(task._id&&task._id.length>0){
+     axios.get('/notes/'+task._id,task._id)
+     .then(res => {
+       if(res.data)
+       {
+         this.props.getoneTodo();
+         this.setState({action2:""})
+       }
+     })
+ }
+ }
+
+handleChange = (e) => {
+  this.setState({action: e.target.value})}
+handleChange1 = (e) => {
+  this.setState({action1: e.target.value})}
+handleChange2 = (e) => {
+  this.setState({action2: e.target.value})}
+
  render() {
    return (
      <div>
@@ -50,6 +66,7 @@ class Input extends Component {
        <button onClick={this.addTodo}>add</button><br/>
        id:<input type="text" onChange={this.handleChange2} value={this.state.action2}/>
        <button onClick={this.deleteTodo}>delete</button>
+       <button onClick={this.getoneTodo}>getone</button>
        </div>
    )
  }
